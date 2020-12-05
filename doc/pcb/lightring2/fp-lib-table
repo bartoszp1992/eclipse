@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name lightring)(type KiCad)(uri ${KIPRJMOD}/lightring.pretty)(options "")(descr ""))
+)
