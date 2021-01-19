@@ -1612,7 +1612,6 @@ H4
 Text GLabel 10500 4850 2    50   Input ~ 0
 WORK
 NoConn ~ 9500 4700
-NoConn ~ 9500 4600
 NoConn ~ 9500 3200
 NoConn ~ 9500 3100
 $Comp
@@ -2056,4 +2055,6 @@ Wire Wire Line
 Text GLabel 8250 5700 0    50   Input ~ 0
 SET
 NoConn ~ 7800 5400
+Text GLabel 9500 4600 0    50   Input ~ 0
+TOUCH
 $EndSCHEMATC
