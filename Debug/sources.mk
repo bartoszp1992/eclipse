@@ -23,5 +23,7 @@ Core/Src \
 Core/Startup \
 Core/display \
 Core/interrupts \
+Core/rtc \
+Core/settings \
 Drivers/STM32G0xx_HAL_Driver/Src \
 

@@ -100,8 +100,6 @@ Text GLabel 9500 3500 0    50   Input ~ 0
 H9
 Text GLabel 9500 3600 0    50   Input ~ 0
 M23
-Text GLabel 9500 4900 0    50   Input ~ 0
-WAKE
 Text GLabel 9500 5000 0    50   Input ~ 0
 M5
 Text GLabel 9500 5500 0    50   Input ~ 0

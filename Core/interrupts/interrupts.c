@@ -6,11 +6,14 @@
  */
 
 #include "interrupts.h"
+#include "../rtc/rtc.h"
 
 void extiCallback(uint8_t pin) {
 
-	if(pin == TOUCH_Pin){
-		testFlag = 1;
+	if(pin == TOUCH_Pin && mode == MODE_NORMAL){
+		displayFlag = 1;
+	}else if(pin == SET_Pin){
+		mode = MODE_SETTINGS;
 	}
 
 }
