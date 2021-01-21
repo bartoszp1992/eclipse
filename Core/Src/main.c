@@ -104,31 +104,29 @@ int main(void)
   /* USER CODE BEGIN WHILE */
 	while (1) {
 
-//		if (HAL_GPIO_ReadPin(TOUCH_GPIO_Port, TOUCH_Pin) == 1) {
-//			HAL_GPIO_WritePin(WORK_GPIO_Port, WORK_Pin, 1);
-//		} else {
-//			HAL_GPIO_WritePin(WORK_GPIO_Port, WORK_Pin, 0);
-//		}
 
-//		for (uint8_t i = 0; i < 30; i++) {
-//						displayTurnMinutesLED(i, 1);
-//						HAL_Delay(10);
-//					}
-//
-//		for (uint8_t i = 0; i < 12; i++) {
-//						displayTurnHoursLED(i, 1);
-//						HAL_Delay(20);
-//					}
 
-		rtcGetTime();
 
-		if (displayFlag == 1) {
+		if (mode == MODE_NORMAL) {
 
+			rtcGetTime();
 			displayShowTime(hours, minutes, 50, 15);
-			displayFlag = 0;
+			dontSleepFlag = 0;
+		}else if(mode == MODE_SETTINGS_H || mode == MODE_SETTINGS_M){
+
+			displayTurnOff();
+			displayTurnMinutesLED(minutes/2, 1);
+			displayTurnHoursLED(hours, 1);
+			HAL_Delay(50);
+
+		}else if(mode == MODE_SLEEP){
+			HAL_GPIO_WritePin(WORK_GPIO_Port, WORK_Pin, 1);
+			HAL_Delay(50);
+			HAL_GPIO_WritePin(WORK_GPIO_Port, WORK_Pin, 0);
 		}
 
-		if(mode == MODE_NORMAL){
+		if((mode == MODE_NORMAL || mode == MODE_SLEEP)&& dontSleepFlag == 0){
+			mode = MODE_SLEEP;
 			HAL_PWR_EnterSTOPMode(PWR_LOWPOWERREGULATOR_ON, PWR_STOPENTRY_WFI);
 		}
 
@@ -233,8 +231,8 @@ static void MX_RTC_Init(void)
 
   /** Initialize RTC and set the Time and Date
   */
-  sTime.Hours = 5;
-  sTime.Minutes = 40;
+  sTime.Hours = 11;
+  sTime.Minutes = 59;
   sTime.Seconds = 0;
   sTime.SubSeconds = 0;
   sTime.TimeFormat = RTC_HOURFORMAT12_AM;
@@ -250,6 +248,12 @@ static void MX_RTC_Init(void)
   sDate.Year = 0;
 
   if (HAL_RTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BIN) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /** Enable the WakeUp
+  */
+  if (HAL_RTCEx_SetWakeUpTimer_IT(&hrtc, 65535, RTC_WAKEUPCLOCK_RTCCLK_DIV16) != HAL_OK)
   {
     Error_Handler();
   }
@@ -337,8 +341,8 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin : SET_Pin */
   GPIO_InitStruct.Pin = SET_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(SET_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : M5_Pin M2_Pin M29_Pin M28_Pin

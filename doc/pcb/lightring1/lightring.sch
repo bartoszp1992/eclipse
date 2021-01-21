@@ -1,4 +1,5 @@
 EESchema Schematic File Version 4
+LIBS:lightring-cache
 EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
@@ -1710,7 +1711,7 @@ Wire Wire Line
 	9000 1500 9000 1150
 Connection ~ 8400 1500
 $Comp
-L Connector:USB_B_Micro J2
+L lightring-rescue:USB_B_Micro-Connector J2
 U 1 1 5FF3E4D7
 P 4450 1100
 F 0 "J2" H 4507 1567 50  0000 C CNN

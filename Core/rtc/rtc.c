@@ -11,7 +11,7 @@ void rtcInit(void) {
 //	HAL_RTC_Init(&hrtc);
 	mode = MODE_NORMAL
 	;
-
+	dontSleepFlag = 0;
 }
 
 void rtcGetTime() {
@@ -19,7 +19,13 @@ void rtcGetTime() {
 	HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
 	HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
 
-	hours = sTime.Hours;
+
+
+	if(sTime.Hours == 12){
+		hours = 0;
+	}else{
+		hours = sTime.Hours;
+	}
 	minutes = sTime.Minutes;
 	seconds = sTime.Seconds;
 

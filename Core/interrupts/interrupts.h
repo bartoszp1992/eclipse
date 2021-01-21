@@ -11,6 +11,6 @@
 #include "main.h"
 #include "../display/display.h"
 
-void extiCallback(uint8_t pin);
+void extiCallback(uint16_t pin);
 
 #endif /* INTERRUPTS_INTERRUPTS_H_ */

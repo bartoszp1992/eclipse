@@ -1,5 +1,6 @@
-display.c:10:6:displayShowTime	32	static
-display.c:40:6:displaySplashMinutes	32	static
-display.c:52:6:displaySplashHours	32	static
-display.c:67:6:displayTurnHoursLED	16	static
-display.c:112:6:displayTurnMinutesLED	16	static
+display.c:10:6:displayTurnOff	16	static
+display.c:19:6:displayShowTime	32	static
+display.c:49:6:displaySplashMinutes	32	static
+display.c:61:6:displaySplashHours	32	static
+display.c:74:6:displayTurnHoursLED	16	static
+display.c:119:6:displayTurnMinutesLED	16	static

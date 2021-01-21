@@ -19,10 +19,10 @@
 #define WAKE_UP_05S  0x4C4
 #define WAKE_UP_01S 0xF4
 
-
-#define MODE_SLEEP 0
-#define MODE_NORMAL 1
-#define MODE_SETTINGS 2
+#define MODE_NORMAL 0
+#define MODE_SETTINGS_H 1
+#define MODE_SETTINGS_M 2
+#define MODE_SLEEP 3
 
 extern RTC_HandleTypeDef hrtc;
 
@@ -35,6 +35,7 @@ volatile uint8_t mode;
 volatile int8_t hours;
 volatile int16_t minutes;
 volatile int8_t seconds;
+volatile uint8_t dontSleepFlag;
 
 void rtcGetTime(void);
 void rtcSetTime(void);

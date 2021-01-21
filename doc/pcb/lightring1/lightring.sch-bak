@@ -66,9 +66,9 @@ Wire Wire Line
 	9200 2450 9200 2700
 Wire Wire Line
 	9200 2700 9500 2700
-Text GLabel 9500 2800 0    50   Input ~ 0
-XTAL1
 Text GLabel 9500 2900 0    50   Input ~ 0
+XTAL1
+Text GLabel 9500 3000 0    50   Input ~ 0
 XTAL2
 Text GLabel 9500 5100 0    50   Input ~ 0
 M25
@@ -1610,8 +1610,8 @@ H4
 Text GLabel 10500 4850 2    50   Input ~ 0
 WORK
 NoConn ~ 9500 4700
+NoConn ~ 9500 3300
 NoConn ~ 9500 3200
-NoConn ~ 9500 3100
 $Comp
 L Device:R R44
 U 1 1 5FD67042
@@ -2055,4 +2055,5 @@ SET
 NoConn ~ 7800 5400
 Text GLabel 9500 4600 0    50   Input ~ 0
 TOUCH
+NoConn ~ 9500 2800
 $EndSCHEMATC

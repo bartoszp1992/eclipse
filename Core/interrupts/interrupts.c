@@ -8,12 +8,40 @@
 #include "interrupts.h"
 #include "../rtc/rtc.h"
 
-void extiCallback(uint8_t pin) {
+void extiCallback(uint16_t pin) {
 
-	if(pin == TOUCH_Pin && mode == MODE_NORMAL){
-		displayFlag = 1;
-	}else if(pin == SET_Pin){
-		mode = MODE_SETTINGS;
+//	if(pin == 0){
+//		pin = SET_Pin; // dunno why- SET pin is reading as - instead of 15
+//	}
+	dontSleepFlag = 1;
+
+	if (pin == TOUCH_Pin) {
+
+		if (mode == MODE_SLEEP) {
+			mode= MODE_NORMAL;
+		} else if (mode == MODE_SETTINGS_H) {
+			hours++;
+			if (hours > 11)
+				hours = 0;
+		} else if (mode == MODE_SETTINGS_M) {
+			minutes++;
+			if (minutes > 59)
+				minutes = 0;
+		}
+	}
+
+	else if (pin == SET_Pin) {
+
+		if (mode == MODE_NORMAL || mode == MODE_SLEEP) {
+			mode = MODE_SETTINGS_H;
+		} else if (mode == MODE_SETTINGS_H) {
+			mode = MODE_SETTINGS_M;
+		} else if (mode == MODE_SETTINGS_M) {
+			rtcSetTime();
+			displayTurnOff();
+			mode = MODE_NORMAL;
+		}
+
 	}
 
 }
@@ -21,8 +49,6 @@ void extiCallback(uint8_t pin) {
 void HAL_GPIO_EXTI_Rising_Callback(uint16_t GPIO_Pin) {
 
 	extiCallback(GPIO_Pin);
-
-
 
 }
 

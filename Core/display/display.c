@@ -7,35 +7,44 @@
 
 #include "display.h"
 
-void displayShowTime(uint8_t hours, uint8_t minutes, uint8_t timeH, uint8_t timeM){
+void displayTurnOff(void) {
+	for (uint8_t i = 0; i < 60; i++) {
+		displayTurnMinutesLED(i, 0);
+	}
+	for (uint8_t i = 0; i < 12; i++) {
+		displayTurnHoursLED(i, 0);
+	}
+}
+
+void displayShowTime(uint8_t hours, uint8_t minutes, uint8_t timeH,
+		uint8_t timeM) {
 
 	displaySplashMinutes(4);
 
-	for (uint8_t i = 0; i < (minutes/2)+1; i++) {
-			displayTurnMinutesLED(i, 1);
-			HAL_Delay(timeM);
-		}
+	for (uint8_t i = 1; i < (minutes / 2) + 1; i++) {
+		displayTurnMinutesLED(i, 1);
+		HAL_Delay(timeM);
+	}
 
 //	displaySplashHours(10);
 
-	for (uint8_t i = 0; i < hours+1; i++) {
-				displayTurnHoursLED(i, 1);
-				HAL_Delay(timeH);
-			}
+	for (uint8_t i = 1; i < hours + 1; i++) {
+		displayTurnHoursLED(i, 1);
+		HAL_Delay(timeH);
+	}
 
 	HAL_Delay(1200);
 
-	for (uint8_t i = 0; i < (minutes/2)+1; i++) {
-			displayTurnMinutesLED(i, 0);
-			HAL_Delay(timeM);
-		}
+	for (uint8_t i = 1; i < (minutes / 2) + 1; i++) {
+		displayTurnMinutesLED(i, 0);
+		HAL_Delay(timeM);
+	}
 
-	for (uint8_t i = 0; i < hours+1; i++) {
-				displayTurnHoursLED(i, 0);
-				HAL_Delay(timeH);
-			}
+	for (uint8_t i = 1; i < hours + 1; i++) {
+		displayTurnHoursLED(i, 0);
+		HAL_Delay(timeH);
+	}
 }
-
 
 void displaySplashMinutes(uint8_t time) {
 	for (uint8_t i = 0; i < 30; i++) {
@@ -49,7 +58,7 @@ void displaySplashMinutes(uint8_t time) {
 	}
 }
 
-void displaySplashHours(uint8_t time){
+void displaySplashHours(uint8_t time) {
 
 	for (uint8_t i = 0; i < 12; i++) {
 		displayTurnHoursLED(i, 1);
@@ -61,8 +70,6 @@ void displaySplashHours(uint8_t time){
 		HAL_Delay(time);
 	}
 }
-
-
 
 void displayTurnHoursLED(uint8_t led, uint8_t state) {
 
