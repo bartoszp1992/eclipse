@@ -6,6 +6,7 @@
  */
 
 #include "interrupts.h"
+#include "main.h"
 #include "../rtc/rtc.h"
 
 void extiCallback(uint16_t pin) {
@@ -18,28 +19,44 @@ void extiCallback(uint16_t pin) {
 	if (pin == TOUCH_Pin) {
 
 		if (mode == MODE_SLEEP) {
-			mode= MODE_NORMAL;
+			mode = MODE_NORMAL;
 		} else if (mode == MODE_SETTINGS_H) {
 			hours++;
 			if (hours > 11)
 				hours = 0;
+			seconds = 0;
+			rtcSetTime();
 		} else if (mode == MODE_SETTINGS_M) {
 			minutes++;
 			if (minutes > 59)
 				minutes = 0;
+			seconds = 0;
+			rtcSetTime();
+		} else if(mode == MODE_SETTINGS_S){
+			seconds = 0;
+			rtcSetTime();
+		}else if(mode == MODE_FORCE){
+			mode = MODE_NORMAL;
 		}
 	}
 
 	else if (pin == SET_Pin) {
 
-		if (mode == MODE_NORMAL || mode == MODE_SLEEP) {
+		if (mode == MODE_SLEEP) {
 			mode = MODE_SETTINGS_H;
+			seconds = 0;
+			rtcSetTime();
+
 		} else if (mode == MODE_SETTINGS_H) {
 			mode = MODE_SETTINGS_M;
 		} else if (mode == MODE_SETTINGS_M) {
+			mode = MODE_SETTINGS_S;
+		} else if (mode == MODE_SETTINGS_S) {
 			rtcSetTime();
 			displayTurnOff();
 			mode = MODE_NORMAL;
+		} else if(mode == MODE_NORMAL){
+			mode = MODE_FORCE;
 		}
 
 	}

@@ -7,12 +7,6 @@
 
 #include "rtc.h"
 
-void rtcInit(void) {
-//	HAL_RTC_Init(&hrtc);
-	mode = MODE_NORMAL
-	;
-	dontSleepFlag = 0;
-}
 
 void rtcGetTime() {
 

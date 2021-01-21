@@ -151,7 +151,15 @@ void Error_Handler(void);
 #define M24_Pin GPIO_PIN_10
 #define M24_GPIO_Port GPIOC
 /* USER CODE BEGIN Private defines */
+#define MODE_NORMAL 0
+#define MODE_SETTINGS_H 1
+#define MODE_SETTINGS_M 2
+#define MODE_SETTINGS_S 3
+#define MODE_SLEEP 4
+#define MODE_FORCE 5
 
+volatile uint8_t mode;
+	volatile uint8_t dontSleepFlag;
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

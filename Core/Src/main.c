@@ -97,39 +97,81 @@ int main(void)
   MX_GPIO_Init();
   MX_RTC_Init();
   /* USER CODE BEGIN 2 */
-	rtcInit();
+	mode = MODE_NORMAL;
+	dontSleepFlag = 0;
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 	while (1) {
 
-
-
-
 		if (mode == MODE_NORMAL) {
 
 			rtcGetTime();
 			displayShowTime(hours, minutes, 50, 15);
 			dontSleepFlag = 0;
-		}else if(mode == MODE_SETTINGS_H || mode == MODE_SETTINGS_M){
+
+		} else if (mode == MODE_SETTINGS_H || mode == MODE_SETTINGS_M) {
 
 			displayTurnOff();
-			displayTurnMinutesLED(minutes/2, 1);
+			displayTurnMinutesLED(minutes / 2, 1);
+
+			if (minutes % 2 == 1) {
+
+				HAL_GPIO_WritePin(WORK_GPIO_Port, WORK_Pin, 1);
+
+			} else {
+
+				HAL_GPIO_WritePin(WORK_GPIO_Port, WORK_Pin, 0);
+
+			}
+
 			displayTurnHoursLED(hours, 1);
 			HAL_Delay(50);
 
-		}else if(mode == MODE_SLEEP){
+		} else if (mode == MODE_SETTINGS_S) {
+
+			rtcGetTime();
+			displayTurnOff();
+			displayTurnMinutesLED(seconds / 2, 1);
+
+			if (seconds % 2 == 1) {
+
+				HAL_GPIO_WritePin(WORK_GPIO_Port, WORK_Pin, 1);
+
+			} else {
+
+				HAL_GPIO_WritePin(WORK_GPIO_Port, WORK_Pin, 0);
+
+			}
+
+			HAL_Delay(50);
+
+		} else if (mode == MODE_SLEEP) {
+
 			HAL_GPIO_WritePin(WORK_GPIO_Port, WORK_Pin, 1);
 			HAL_Delay(50);
 			HAL_GPIO_WritePin(WORK_GPIO_Port, WORK_Pin, 0);
+
+		} else if(mode == MODE_FORCE){
+
+			rtcGetTime();//for actual seconds reading
+
+			if(HAL_GPIO_ReadPin(SET_GPIO_Port, SET_Pin) == 1){
+				displayShowTimeForce(hours, minutes);
+			}else{
+				displayShowTimeForce(0, seconds);
+			}
+
+
 		}
 
-		if((mode == MODE_NORMAL || mode == MODE_SLEEP)&& dontSleepFlag == 0){
+		if ((mode == MODE_NORMAL || mode == MODE_SLEEP) && dontSleepFlag == 0) {
+
 			mode = MODE_SLEEP;
 			HAL_PWR_EnterSTOPMode(PWR_LOWPOWERREGULATOR_ON, PWR_STOPENTRY_WFI);
-		}
 
+		}
 
     /* USER CODE END WHILE */
 
@@ -231,8 +273,8 @@ static void MX_RTC_Init(void)
 
   /** Initialize RTC and set the Time and Date
   */
-  sTime.Hours = 11;
-  sTime.Minutes = 59;
+  sTime.Hours = 6;
+  sTime.Minutes = 40;
   sTime.Seconds = 0;
   sTime.SubSeconds = 0;
   sTime.TimeFormat = RTC_HOURFORMAT12_AM;
@@ -253,7 +295,7 @@ static void MX_RTC_Init(void)
   }
   /** Enable the WakeUp
   */
-  if (HAL_RTCEx_SetWakeUpTimer_IT(&hrtc, 65535, RTC_WAKEUPCLOCK_RTCCLK_DIV16) != HAL_OK)
+  if (HAL_RTCEx_SetWakeUpTimer_IT(&hrtc, 24390, RTC_WAKEUPCLOCK_RTCCLK_DIV16) != HAL_OK)
   {
     Error_Handler();
   }

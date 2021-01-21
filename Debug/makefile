@@ -57,8 +57,8 @@ all: main-build
 main-build: eclipse.elf secondary-outputs
 
 # Tool invocations
-eclipse.elf: $(OBJS) $(USER_OBJS) C:\Users\Bartosz\ Pracz\Desktop\mine\projekty\eclipse\STM32G070RBTX_FLASH.ld
-	arm-none-eabi-gcc -o "eclipse.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0plus -T"C:\Users\Bartosz Pracz\Desktop\mine\projekty\eclipse\STM32G070RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="eclipse.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+eclipse.elf: $(OBJS) $(USER_OBJS) /home/bartosz/projekty/arm/workspace/eclipse/STM32G070RBTX_FLASH.ld
+	arm-none-eabi-gcc -o "eclipse.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0plus -T"/home/bartosz/projekty/arm/workspace/eclipse/STM32G070RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="eclipse.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
