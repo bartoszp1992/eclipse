@@ -108,7 +108,7 @@ int main(void)
 		if (mode == MODE_NORMAL) {
 
 			rtcGetTime();
-			displayShowTime(hours, minutes, 50, 15);
+			displayShowTime(hours, minutes, 20, 15);
 			dontSleepFlag = 0;
 
 		} else if (mode == MODE_SETTINGS_H || mode == MODE_SETTINGS_M) {

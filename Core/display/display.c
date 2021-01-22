@@ -7,33 +7,45 @@
 
 #include "display.h"
 
-void displayShowTimeForce(uint8_t hours, uint8_t minutes){
+void displayShowTimeForce(uint8_t hours, uint8_t minutes) {
 
 //	displayTurnOff();
 
-
 //turn on LEDs
-		for (uint8_t i = 1; i < (minutes / 2) + 1; i++) {
-			displayTurnMinutesLED(i, 1);
-		}
+	for (uint8_t i = 1; i < (minutes / 2) + 1; i++) {
+		displayTurnMinutesLED(i, 1);
+	}
 //turn off unused
-		for (uint8_t i = minutes/2+1; i<59; i++){
-			displayTurnMinutesLED(i, 0);
-		}
+	for (uint8_t i = minutes / 2 + 1; i < 59; i++) {
+		displayTurnMinutesLED(i, 0);
+	}
+
+	if (minutes == 0) {
+		displayTurnMinutesLED(0, 1);
+	} else {
+		displayTurnMinutesLED(0, 0);
+	}
+
 //turn off/on parity LED
-		if(minutes%2 ==1){
-			HAL_GPIO_WritePin(WORK_GPIO_Port, WORK_Pin, 1);
-		} else{
-			HAL_GPIO_WritePin(WORK_GPIO_Port, WORK_Pin, 0);
-		}
+	if (minutes % 2 == 1) {
+		HAL_GPIO_WritePin(WORK_GPIO_Port, WORK_Pin, 1);
+	} else {
+		HAL_GPIO_WritePin(WORK_GPIO_Port, WORK_Pin, 0);
+	}
 
+	for (uint8_t i = 1; i < hours + 1; i++) {
+		displayTurnHoursLED(i, 1);
+	}
 
-		for (uint8_t i = 1; i < hours + 1; i++) {
-			displayTurnHoursLED(i, 1);
-		}
-		for (uint8_t i = hours+1; i<11; i++){
-			displayTurnHoursLED(i, 0);
-		}
+	if (hours == 0) {
+		displayTurnHoursLED(0, 1);
+	} else {
+		displayTurnHoursLED(0, 0);
+	}
+
+	for (uint8_t i = hours + 1; i < 11; i++) {
+		displayTurnHoursLED(i, 0);
+	}
 
 }
 
@@ -56,7 +68,13 @@ void displayShowTime(uint8_t hours, uint8_t minutes, uint8_t timeH,
 		HAL_Delay(timeM);
 	}
 
-	if(minutes%2 ==1){
+	if (minutes == 0) {
+		displayTurnMinutesLED(0, 1);
+	} else {
+		displayTurnMinutesLED(0, 0);
+	}
+
+	if (minutes % 2 == 1) {
 		HAL_GPIO_WritePin(WORK_GPIO_Port, WORK_Pin, 1);
 	}
 
@@ -67,19 +85,29 @@ void displayShowTime(uint8_t hours, uint8_t minutes, uint8_t timeH,
 		HAL_Delay(timeH);
 	}
 
+	if (hours == 0) {
+		displayTurnHoursLED(0, 1);
+	} else {
+		displayTurnHoursLED(0, 0);
+	}
+
 	HAL_Delay(1200);
 
-	for (uint8_t i = 1; i < (minutes / 2) + 1; i++) {
-		displayTurnMinutesLED(i, 0);
-		HAL_Delay(timeM);
+	if (mode != MODE_FORCE) {
+		for (uint8_t i = 1; i < (minutes / 2) + 1; i++) {
+			displayTurnMinutesLED(i, 0);
+			HAL_Delay(timeM);
+		}
+
+		for (uint8_t i = 1; i < hours + 1; i++) {
+			displayTurnHoursLED(i, 0);
+			HAL_Delay(timeH);
+		}
+
+		displayTurnOff();
+		HAL_GPIO_WritePin(WORK_GPIO_Port, WORK_Pin, 0);
 	}
 
-	for (uint8_t i = 1; i < hours + 1; i++) {
-		displayTurnHoursLED(i, 0);
-		HAL_Delay(timeH);
-	}
-
-	HAL_GPIO_WritePin(WORK_GPIO_Port, WORK_Pin, 0);
 }
 
 void displaySplashMinutes(uint8_t time) {
