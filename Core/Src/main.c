@@ -158,9 +158,9 @@ int main(void)
 			rtcGetTime();//for actual seconds reading
 
 			if(HAL_GPIO_ReadPin(SET_GPIO_Port, SET_Pin) == 1){
-				displayShowTimeForce(hours, minutes);
+				displayShowTimeForce(hours, minutes, 0);
 			}else{
-				displayShowTimeForce(0, seconds);
+				displayShowTimeForce(0, seconds, 1);
 			}
 
 
@@ -273,8 +273,8 @@ static void MX_RTC_Init(void)
 
   /** Initialize RTC and set the Time and Date
   */
-  sTime.Hours = 6;
-  sTime.Minutes = 40;
+  sTime.Hours = 12;
+  sTime.Minutes = 59;
   sTime.Seconds = 0;
   sTime.SubSeconds = 0;
   sTime.TimeFormat = RTC_HOURFORMAT12_AM;

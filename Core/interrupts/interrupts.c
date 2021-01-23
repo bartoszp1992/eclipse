@@ -57,6 +57,8 @@ void extiCallback(uint16_t pin) {
 			mode = MODE_NORMAL;
 		} else if(mode == MODE_NORMAL){
 			mode = MODE_FORCE;
+		} else if(mode == MODE_FORCE){
+			displayTurnOff();
 		}
 
 	}

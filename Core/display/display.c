@@ -7,7 +7,7 @@
 
 #include "display.h"
 
-void displayShowTimeForce(uint8_t hours, uint8_t minutes) {
+void displayShowTimeForce(uint8_t hours, uint8_t minutes, uint8_t secondsFlag) {
 
 //	displayTurnOff();
 
@@ -33,18 +33,26 @@ void displayShowTimeForce(uint8_t hours, uint8_t minutes) {
 		HAL_GPIO_WritePin(WORK_GPIO_Port, WORK_Pin, 0);
 	}
 
-	for (uint8_t i = 1; i < hours + 1; i++) {
-		displayTurnHoursLED(i, 1);
+	if (secondsFlag == 0) {
+		for (uint8_t i = 1; i < hours + 1; i++) {
+			displayTurnHoursLED(i, 1);
+		}
+
+		if (hours == 0) {
+			displayTurnHoursLED(0, 1);
+		} else {
+			displayTurnHoursLED(0, 0);
+		}
+
+		for (uint8_t i = hours + 1; i < 11; i++) {
+			displayTurnHoursLED(i, 0);
+		}
 	}
 
-	if (hours == 0) {
-		displayTurnHoursLED(0, 1);
-	} else {
-		displayTurnHoursLED(0, 0);
-	}
-
-	for (uint8_t i = hours + 1; i < 11; i++) {
-		displayTurnHoursLED(i, 0);
+	else {
+		for (uint8_t i = 0; i < 12; i++) {
+			displayTurnHoursLED(i, 0);
+		}
 	}
 
 }

@@ -14,7 +14,7 @@
 void displayTurnHoursLED(uint8_t led, uint8_t state);
 void displayTurnMinutesLED(uint8_t led, uint8_t state);
 
-void displayShowTimeForce(uint8_t hours, uint8_t minutes);
+void displayShowTimeForce(uint8_t hours, uint8_t minutes, uint8_t secondsFlag);
 
 void displaySplashMinutes(uint8_t time);
 void displaySplashHours(uint8_t time);
