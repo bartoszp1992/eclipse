@@ -1,5 +1,4 @@
 EESchema Schematic File Version 4
-LIBS:lightring-cache
 EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
@@ -107,7 +106,7 @@ Text GLabel 9500 5500 0    50   Input ~ 0
 M28
 Text GLabel 9500 5600 0    50   Input ~ 0
 M29
-Text GLabel 10500 2750 2    50   Input ~ 0
+Text GLabel 9500 4900 0    50   Input ~ 0
 M20
 Text GLabel 10500 2850 2    50   Input ~ 0
 H8
@@ -619,7 +618,7 @@ U 1 1 5FDCD96D
 P 7150 1050
 F 0 "BT1" H 7268 1146 50  0000 L CNN
 F 1 "Battery_Cell" H 7268 1055 50  0000 L CNN
-F 2 "Resistor_SMD:R_1206_3216Metric" V 7150 1110 50  0001 C CNN
+F 2 "Resistor_SMD:R_1210_3225Metric" V 7150 1110 50  0001 C CNN
 F 3 "~" V 7150 1110 50  0001 C CNN
 	1    7150 1050
 	1    0    0    -1  
@@ -2053,8 +2052,81 @@ Wire Wire Line
 	8850 6050 8850 6200
 Text GLabel 8250 5700 0    50   Input ~ 0
 SET
-NoConn ~ 7800 5400
 Text GLabel 9500 4600 0    50   Input ~ 0
 TOUCH
 NoConn ~ 9500 2800
+$Comp
+L Device:R R50
+U 1 1 600E0A15
+P 6150 5300
+F 0 "R50" H 6220 5346 50  0000 L CNN
+F 1 "100k" H 6220 5255 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 6080 5300 50  0001 C CNN
+F 3 "~" H 6150 5300 50  0001 C CNN
+	1    6150 5300
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R51
+U 1 1 600E16F0
+P 6150 5700
+F 0 "R51" H 6220 5746 50  0000 L CNN
+F 1 "100k" H 6220 5655 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 6080 5700 50  0001 C CNN
+F 3 "~" H 6150 5700 50  0001 C CNN
+	1    6150 5700
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0113
+U 1 1 600E3242
+P 6150 5950
+F 0 "#PWR0113" H 6150 5700 50  0001 C CNN
+F 1 "GND" H 6155 5777 50  0000 C CNN
+F 2 "" H 6150 5950 50  0001 C CNN
+F 3 "" H 6150 5950 50  0001 C CNN
+	1    6150 5950
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:VCC #PWR0114
+U 1 1 600EB1AD
+P 6150 5100
+F 0 "#PWR0114" H 6150 4950 50  0001 C CNN
+F 1 "VCC" H 6165 5273 50  0000 C CNN
+F 2 "" H 6150 5100 50  0001 C CNN
+F 3 "" H 6150 5100 50  0001 C CNN
+	1    6150 5100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6150 5100 6150 5150
+Wire Wire Line
+	6150 5950 6150 5850
+Wire Wire Line
+	6150 5550 6150 5450
+$Comp
+L Device:C C3
+U 1 1 6010184D
+P 6600 5700
+F 0 "C3" H 6715 5746 50  0000 L CNN
+F 1 "104" H 6715 5655 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 6638 5550 50  0001 C CNN
+F 3 "~" H 6600 5700 50  0001 C CNN
+	1    6600 5700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6150 5550 6600 5550
+Connection ~ 6150 5550
+Wire Wire Line
+	6150 5850 6600 5850
+Connection ~ 6150 5850
+Text GLabel 6950 5550 2    50   Input ~ 0
+STATE
+Wire Wire Line
+	6600 5550 6950 5550
+Connection ~ 6600 5550
+Text GLabel 10500 2750 2    50   Input ~ 0
+STATE
 $EndSCHEMATC

@@ -19,7 +19,7 @@
 /*
  *
  * PCB changelog
- * 0.3 - fixed xtal pins
+ * 0.3 - fixed xtal pins, added ADC, added indexes
  *
  */
 /* USER CODE END Header */
