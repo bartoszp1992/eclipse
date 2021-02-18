@@ -1,3 +1,0 @@
-(sym_lib_table
-  (lib (name lightring)(type Legacy)(uri ${KIPRJMOD}/lightring.lib)(options "")(descr ""))
-)
