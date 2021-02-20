@@ -1656,7 +1656,7 @@ L Regulator_Linear:LDK130-33_SOT23_SOT353 U4
 U 1 1 5FE822D3
 P 8400 950
 F 0 "U4" H 8400 1292 50  0000 C CNN
-F 1 "LDK130-33_SOT23_SOT353" H 8400 1201 50  0000 C CNN
+F 1 "TC1185-3.3" H 8400 1201 50  0000 C CNN
 F 2 "Package_TO_SOT_SMD:SOT-23-5" H 8400 1275 50  0001 C CNN
 F 3 "http://www.st.com/content/ccc/resource/technical/document/datasheet/29/10/f7/87/2f/66/47/f4/DM00076097.pdf/files/DM00076097.pdf/jcr:content/translations/en.DM00076097.pdf" H 8400 950 50  0001 C CNN
 	1    8400 950 

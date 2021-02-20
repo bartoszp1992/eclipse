@@ -4,9 +4,9 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
-Title ""
-Date ""
-Rev ""
+Title "Lightring schematic"
+Date "2021-02-20"
+Rev "0.3"
 Comp ""
 Comment1 ""
 Comment2 ""
