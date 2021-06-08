@@ -16,6 +16,6 @@ stm32g0xx_hal_rtc.c:1616:19:HAL_RTC_PollForAlarmAEvent	24	static
 stm32g0xx_hal_rtc.c:1675:19:HAL_RTC_WaitForSynchro	24	static
 stm32g0xx_hal_rtc.c:1719:21:HAL_RTC_GetState	16	static
 stm32g0xx_hal_rtc.c:1742:19:RTC_EnterInitMode	24	static
-stm32g0xx_hal_rtc.c:1773:19:RTC_ExitInitMode	24	static
+stm32g0xx_hal_rtc.c:1773:19:RTC_ExitInitMode	32	static
 stm32g0xx_hal_rtc.c:1810:9:RTC_ByteToBcd2	24	static
 stm32g0xx_hal_rtc.c:1829:9:RTC_Bcd2ToByte	24	static

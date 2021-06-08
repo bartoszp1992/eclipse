@@ -69,8 +69,8 @@ void Error_Handler(void);
 #define M22_GPIO_Port GPIOC
 #define M21_Pin GPIO_PIN_3
 #define M21_GPIO_Port GPIOC
-#define M20_Pin GPIO_PIN_0
-#define M20_GPIO_Port GPIOA
+#define STATE_Pin GPIO_PIN_0
+#define STATE_GPIO_Port GPIOA
 #define H8_Pin GPIO_PIN_1
 #define H8_GPIO_Port GPIOA
 #define M19_Pin GPIO_PIN_2
@@ -118,6 +118,8 @@ void Error_Handler(void);
 #define H2_GPIO_Port GPIOC
 #define M5_Pin GPIO_PIN_8
 #define M5_GPIO_Port GPIOD
+#define M20_Pin GPIO_PIN_9
+#define M20_GPIO_Port GPIOD
 #define M4_Pin GPIO_PIN_10
 #define M4_GPIO_Port GPIOA
 #define M3_Pin GPIO_PIN_11
